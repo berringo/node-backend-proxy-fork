@@ -12,6 +12,8 @@ passport.use(new APIStrategy({
     oauthServerUrl: "https://eu-de.appid.cloud.ibm.com/oauth/v4/6c32cfb3-f970-41dd-a06f-1f8b6267b7c2",
 }));
 
+app.use(express.json())
+
 app.use(passport.authenticate(APIStrategy.STRATEGY_NAME, {
     session: false
 }));
