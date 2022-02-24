@@ -19,6 +19,7 @@ app.use(passport.authenticate(APIStrategy.STRATEGY_NAME, {
 // Sample API
 app.post('/api', (req, res) => {
     console.log("Receiving request - ", req.header('Authorization'));
+    console.log("Body - ", req.body);
     
     var targetURL = req.header('Target-URL');
     console.log("targetURL : ",targetURL);
