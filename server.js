@@ -3,6 +3,8 @@ const passport = require('passport');
 const APIStrategy = require('ibmcloud-appid').APIStrategy;
 const request = require('request');
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+
 const app = express();
 
 app.use(passport.initialize());
