@@ -31,7 +31,7 @@ app.post('/api', (req, res) => {
         headers: {'Authorization': req.header('Authorization')} },
         function (error, response, body) {
             if (error) {
-                console.error('error: ' + response.statusCode)
+                console.error('error: ' + error)
             }
     }).pipe(res);
 });
