@@ -30,7 +30,7 @@ app.post('/api', (req, res) => {
         url: targetURL, 
         method: req.method, 
         json: req.body, 
-        headers: {'Authorization': req.header('Authorization')} },
+        headers: req.header },
         function (error, response, body) {
             if (error) {
                 console.error('error: ' + error)
