@@ -18,8 +18,7 @@ app.use(passport.authenticate(APIStrategy.STRATEGY_NAME, {
     session: false
 }));
 
-// Sample API
-app.post('/api', (req, res) => {
+app.post('/api/incidents', (req, res) => {
     console.log("Receiving request - ", req.header('Authorization'));
     console.log("Body - ", req.body);
     
@@ -40,6 +39,27 @@ app.post('/api', (req, res) => {
             }
     }).pipe(res);
 });
+
+app.get('/api/description', (req, res) => {
+    console.log("Receiving request - ", req.header('Authorization'));
+    
+    var targetURL = req.header('Target-URL');
+    console.log("targetURL : ",targetURL);
+    if (!targetURL) {
+        res.send(500, { error: 'There is no Target-Endpoint header in the request' });
+        return;
+    }
+    request({ 
+        url: targetURL, 
+        method: req.method, 
+        headers: { "Authorization": "Basic ZWxhc3RpY3NlYXJjaC1hZG1pbjpNNGFiYXJIMGlJZThvYjdMSVBBamNXeHU=", "accept": "application/json", "Content-Type": "application/json" }},
+        function (error, response, body) {
+            if (error) {
+                console.error('error: ' + error)
+            }
+    }).pipe(res);
+});
+
 
 //Start server
 app.listen(3333, () => {
