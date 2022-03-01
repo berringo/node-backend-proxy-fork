@@ -1,9 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
 const APIStrategy = require('ibmcloud-appid').APIStrategy;
 const request = require('request');
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+const basicAuth = process.env.BASIC_AUTH;
+console.log("BASICAUTH = ", basicAuth);
 
 const app = express();
 
@@ -52,7 +55,7 @@ app.get('/api/description', (req, res) => {
     request({ 
         url: targetURL, 
         method: req.method, 
-        headers: { "Authorization": "Basic ZWxhc3RpY3NlYXJjaC1hZG1pbjpNNGFiYXJIMGlJZThvYjdMSVBBamNXeHU=", "accept": "application/json", "Content-Type": "application/json" }},
+        headers: { "Authorization": basicAuth, "accept": "application/json", "Content-Type": "application/json" }},
         function (error, response, body) {
             if (error) {
                 console.error('error: ' + error)
