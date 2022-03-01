@@ -48,6 +48,7 @@ app.get('/api/description', (req, res) => {
     
     var targetURL = req.header('Target-URL');
     console.log("targetURL : ",targetURL);
+    console.log("Basic Authentication", basicAuth);
     if (!targetURL) {
         res.send(500, { error: 'There is no Target-Endpoint header in the request' });
         return;
@@ -55,7 +56,7 @@ app.get('/api/description', (req, res) => {
     request({ 
         url: targetURL, 
         method: req.method, 
-        headers: { "Authorization": "Basic ZWxhc3RpY3NlYXJjaC1hZG1pbjpNNGFiYXJIMGlJZThvYjdMSVBBamNXeHU=", "accept": "application/json", "Content-Type": "application/json" }},
+        headers: { "Authorization": basicAuth, "accept": "application/json", "Content-Type": "application/json" }},
         function (error, response, body) {
             if (error) {
                 console.error('error: ' + error)
