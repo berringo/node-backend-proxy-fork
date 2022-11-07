@@ -1,4 +1,4 @@
-FROM node:14.17.6
+FROM node:14-ubi8
 
 WORKDIR /usr/src/app
 COPY package.json ./
