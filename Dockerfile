@@ -1,4 +1,4 @@
-FROM node:14-ubi8
+FROM openshift/nodejs:14-ubi8
 
 WORKDIR /usr/src/app
 COPY package.json ./
